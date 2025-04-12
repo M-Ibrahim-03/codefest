@@ -38,7 +38,7 @@ function CourseExplorer() {
   }, [category]);
 
   return (
-    <div className="relative min-h-screen p-8">
+    <div className="relative min-h-screen p-8 pt-16">
       <ErrorBoundary>
         <ThreeBackground />
       </ErrorBoundary>
@@ -71,7 +71,7 @@ function CourseExplorer() {
             <motion.div
               key={course.id}
               className="course-card bg-white bg-opacity-90 p-6 rounded-xl shadow-2xl backdrop-blur-md"
-              whileHover={{ scale: 1.05, rotateY: 5, boxShadow: '0 0 20px rgba(79, 70, 229, 0.5)' }}
+              whileHover={{ scale: 1.05, rotateY: 5 }}
             >
               <h3 className="text-xl font-semibold text-primary font-poppins mb-2">
                 {course.title}

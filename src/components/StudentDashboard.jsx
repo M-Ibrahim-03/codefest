@@ -38,7 +38,7 @@ function StudentDashboard() {
   }, []);
 
   return (
-    <div className="relative min-h-screen p-8 overflow-hidden">
+    <div className="relative min-h-screen p-8 pt-16 overflow-hidden">
       <div
         ref={bgRef}
         className="absolute inset-0 bg-gradient-to-b from-primary to-secondary opacity-20 z-[-1]"

@@ -1,14 +1,19 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Login from './components/Login';
 import StudentDashboard from './components/StudentDashboard';
 import CourseExplorer from './components/CourseExplorer';
 import QuizInterface from './components/QuizInterface';
 import EducatorInsights from './components/EducatorInsights';
 import Leaderboard from './components/Leaderboard';
+import Navbar from './components/Navbar';
 
 function App() {
+  const location = useLocation();
+  const showNavbar = location.pathname !== '/';
+
   return (
-    <Router>
+    <div className="relative">
+      {showNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/student" element={<StudentDashboard />} />
@@ -17,8 +22,12 @@ function App() {
         <Route path="/educator" element={<EducatorInsights />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
       </Routes>
-    </Router>
+    </div>
   );
 }
 
-export default App;
+export default () => (
+  <Router>
+    <App />
+  </Router>
+);

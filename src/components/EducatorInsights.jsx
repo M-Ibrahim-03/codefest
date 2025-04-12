@@ -28,14 +28,14 @@ function EducatorInsights() {
         scrollTrigger: {
           trigger: '.chart',
           start: 'top 80%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       }
     );
   }, []);
 
   return (
-    <div className="relative min-h-screen p-8">
+    <div className="relative min-h-screen p-8 pt-16">
       <ErrorBoundary>
         <ThreeBackground />
       </ErrorBoundary>
@@ -48,7 +48,6 @@ function EducatorInsights() {
         >
           Educator Insights
         </motion.h1>
-
         <div className="chart bg-white bg-opacity-90 p-8 rounded-xl shadow-2xl backdrop-blur-md mb-8">
           <h2 className="text-3xl font-semibold mb-4 font-poppins text-primary">
             Student Performance
@@ -67,7 +66,6 @@ function EducatorInsights() {
             />
           </LineChart>
         </div>
-
         <div className="chart bg-white bg-opacity-90 p-8 rounded-xl shadow-2xl backdrop-blur-md">
           <h2 className="text-3xl font-semibold mb-4 font-poppins text-primary">
             Engagement Heatmap
@@ -77,9 +75,7 @@ function EducatorInsights() {
               <motion.div
                 key={i}
                 className="h-8 rounded"
-                style={{
-                  backgroundColor: `rgba(16, 185, 129, ${Math.random() * 0.8 + 0.2})`,
-                }}
+                style={{ backgroundColor: `rgba(16, 185, 129, ${Math.random() * 0.8 + 0.2})` }}
                 whileHover={{ scale: 1.1 }}
               />
             ))}

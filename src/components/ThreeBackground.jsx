@@ -6,10 +6,8 @@ function ThreeBackground() {
   const mountRef = useRef(null);
 
   useEffect(() => {
-    // Skip if mountRef is not set
     if (!mountRef.current) return;
 
-    // Initialize Three.js
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -18,11 +16,10 @@ function ThreeBackground() {
       1000
     );
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setClearColor(0x000000); // Black background
+    renderer.setClearColor(0x000000);
     renderer.setSize(window.innerWidth, window.innerHeight);
     mountRef.current.appendChild(renderer.domElement);
 
-    // Particle system
     const particles = new THREE.BufferGeometry();
     const particleCount = 2000;
     const positions = new Float32Array(particleCount * 3);
@@ -32,14 +29,10 @@ function ThreeBackground() {
       positions[i + 2] = (Math.random() - 0.5) * 2000;
     }
     particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const particleMaterial = new THREE.PointsMaterial({
-      color: new THREE.Color(`hsl(${Math.random() * 360}, 70%, 80%)`),
-      size: 2,
-    });
+    const particleMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 2 });
     const particleSystem = new THREE.Points(particles, particleMaterial);
     scene.add(particleSystem);
 
-    // Sphere
     const sphereGeometry = new THREE.SphereGeometry(300, 32, 32);
     const sphereMaterial = new THREE.MeshBasicMaterial({
       color: 0x4F46E5,
@@ -50,7 +43,6 @@ function ThreeBackground() {
 
     camera.position.z = 1000;
 
-    // Animation loop
     let animationFrameId;
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
@@ -61,7 +53,6 @@ function ThreeBackground() {
     };
     animate();
 
-    // Resize handler
     const onWindowResize = debounce(() => {
       if (!mountRef.current) return;
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -71,17 +62,14 @@ function ThreeBackground() {
 
     window.addEventListener('resize', onWindowResize);
 
-    // Cleanup
     return () => {
       window.removeEventListener('resize', onWindowResize);
       cancelAnimationFrame(animationFrameId);
 
-      // Remove renderer element if mountRef exists
       if (mountRef.current && renderer.domElement) {
         mountRef.current.removeChild(renderer.domElement);
       }
 
-      // Dispose Three.js resources
       renderer.dispose();
       sphereGeometry.dispose();
       sphereMaterial.dispose();

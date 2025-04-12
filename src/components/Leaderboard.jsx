@@ -27,7 +27,7 @@ function Leaderboard() {
   }, []);
 
   return (
-    <div className="relative min-h-screen p-8">
+    <div className="relative min-h-screen p-8 pt-16">
       <ErrorBoundary>
         <ThreeBackground />
       </ErrorBoundary>
